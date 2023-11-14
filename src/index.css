@@ -1,13 +1,429 @@
-body {
+
+/* Below Css is for mobile devices .. following mobile first aproach*/
+body{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: cursive !important;
+  font-weight: bold;
+  font-size: 2.8vmin;
+  display: flex;
+}
+/* ----- navbar css ----- */
+.navbar {
+  height: 7.5vh;
+  width: 100vw;
+  margin: 0;
+  background-color: rgb(147, 149, 243);
+  display: flex;
+  align-items: center;
+  contain: strict;
+  padding: 0 ;
+  margin-bottom: 5%;
+  font-size: 4.5vmin;
+}
+.navbar-img {
+  height: 70%;
+  margin: 0 2% 0 6%;
+}
+/* ----- album list css ----- */
+.album-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0.5% 1.2%;
+  width: 80%;
+  height: 17vw;
+  max-height: 17vw;
+  min-height: 12vh;
+  margin: auto;
+  background-color: rgb(238, 232, 232);
+  border-radius: 15px;
+  box-shadow: 0px 1px 5px rgb(175, 173, 173);
+}
+.album-form-heading {
+  margin: 0;
+  height: 50%;
+  padding: 0 1%;
+}
+.album-form-input {
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 0;
+  padding: 0 1%;
+}
+.album-form-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 30%;
+  min-width: 80px;
+
+  .album-form-clear {
+    background-color: rgb(235, 91, 81);
+    color: white;
+  }
+  .album-form-create {
+    background-color: rgb(77, 128, 238);
+    color: white;
+  }
+}
+.album-list-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.album-list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.album-list-header-btn {
+  font-size: 1.6vw;
+  padding: 1% 0.5%;
+  width: 12vw;
+  background-color: rgba(5, 53, 246, 0.2);
+  color: blue;
+  font-weight: bold;
+  border-color: blue;
+  min-width: auto;
+  max-width: 10vw;
+} 
+
+.album-list-body{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-height: 60vh;
+  overflow: scroll;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.album-card {
+  width: 22%;
+  height: 15vh;
+  border-radius: 8px;
+  background-color: rgb(215, 208, 208);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1%;
+
+  .album-card-img{
+    width: 85%;
+    height: 75%;
+    contain: strict;
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 8px; */
+    
+  }
+  .album-card-title{
+    width: auto;
+    height: 15%;
+    font-size: 0.5rem;
+  }
+}
+
+.album-card-img img {
+  contain: strict;
+  height: 100%;
+  width: 90%;
+}
+
+
+/* --------------- Image List CSS ---------------- */
+
+/* IMAGE FORM*/
+
+.image-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0.5% 1.2%;
+  width: 80%;
+  height: 22vw;
+  max-height: 25vw;
+  min-height: 12vh;
+  margin: auto;
+  background-color: rgb(238, 232, 232);
+  border-radius: 15px;
+  box-shadow: 0px 1px 5px rgb(175, 173, 173);
+  margin-bottom: 5%;
+
+  .image-form-heading {
+    margin: 0;
+    height: 25%;
+    padding: 0 1%;
+  }
+  .image-form-input {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0;
+    padding: 0 1%;
+
+    .image-form-btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 30%;
+      min-width: 80px;
+
+      .image-form-clear {
+        background-color: rgb(235, 91, 81);
+        color: white;
+      }
+      .image-form-add {
+        background-color: rgb(77, 128, 238);
+        color: white;
+      }
+    }
+  }
+
+}
+
+.image-form-input input {
+  height: 30%;
+}
+
+/*IMAGE LIST*/
+
+.image-list-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+  .image-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .return-name {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 40%;
+
+      .return-to-albums {
+        width: 20%;
+        contain: strict;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .search-addImage {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 50%;
+
+      .search {
+        width: 10%;
+        contain: strict;
+        margin-right: 2.5%;
+      }
+
+      .image-list-header-btn {
+        font-size: 1.6vw;
+        padding: 1% 0.5%;
+        width: 12vw;
+        background-color: rgba(5, 53, 246, 0.2);
+        color: blue;
+        font-weight: bold;
+        border-color: blue;
+        min-width: auto;
+        max-width: 10vw;
+      }
+    }
+ 
+  }
+  .image-list-body{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-height: 60vh;
+    overflow: scroll;
+  }
+}
+
+.image-list-container img {
+  height: 100%;
+  width: 100%;
+}
+
+.return-to-albums img {
+  height: 60%;
+  width: 90%;
+}
+
+.image-card {
+  max-width: 48%;
+  min-width: 22%;
+  height: 15vh;
+  background-color: rgb(215, 208, 208);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1%;
+  flex-grow: 1;
+
+  .image-card-img{
+    width: 85%;
+    height: 75%;
+    contain: strict;
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 8px; */
+    
+  }
+  .image-card-title{
+    width: auto;
+    height: 15%;
+    font-size: 0.5rem;
+  }
+}
+
+
+
+@media only screen and (min-width: 992px) {
+  .album-list-container {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .album-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .album-list-header-btn {
+    font-size: 1.6vh;
+    width: 10%;
+    padding: 1% 0.5%;
+    background-color: rgba(5, 53, 246, 0.2);
+    color: blue;
+    font-weight: bold;
+    border-color: blue;
+  }
+  .navbar {
+    height: 7.5vh;
+    width: 100vw;
+    margin: 0;
+    background-color: rgb(147, 149, 243);
+    display: flex;
+    align-items: center;
+    contain: strict;
+    padding: 0 3%;
+    margin-bottom: 2%;
+  }
+  .navbar-img {
+    height: 70%;
+    margin: 0 0.5%;
+  }
+  .album-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0.5% 1.2%;
+    width: 50%;
+    height: 13.5vh;
+    margin: auto;
+    background-color: rgb(238, 232, 232);
+    border-radius: 15px;
+    box-shadow: 0px 1px 5px rgb(175, 173, 173);
+  } 
+  .album-form-heading {
+    margin: 0;
+    height: 50%;
+  }
+  .album-form-input {
+    height: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 0;
+  }
+  .album-form-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 30%;
+  } 
+}
+
+@media only screen and (min-width: 768px) {
+  .album-form {
+    height: 12vw !important;
+    width: 60% !important;
+    justify-content: center !important;
+  }
+  .album-form-input {
+    flex-direction: column !important;
+    height: 80% !important;
+  }
+
+  .album-form-btn {
+    justify-content: space-between !important;
+  }
+
+  input {
+    width: 70% !important;
+    height: 40% !important;
+  }
+
+  button {
+    min-width: 40% !important;
+    font-size: 2vw !important;
+  }
+
+  .album-list-container {
+    width: 80% !important;
+  }
+
+  .album-list-header-btn {
+    min-width: 20% !important;
+    max-width: 1vw !important;
+    /* width: 20% !important; */
+  }
+}
+
+.album-form-input input {
+  width: 80%;
+}
+
+input {
+  border-radius: 30px;
+  padding: 0.1% 2%;
+  border: none;
+  width: 70%;
+  height: 40%;
+  font-size: 2.8vmin !important;
+}
+
+button {
+  width: 4.6vw;
+  min-width: 40%;
+  font-size: 2vw;
+  border-radius: 10px;
 }
