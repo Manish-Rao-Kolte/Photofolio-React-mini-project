@@ -19,7 +19,7 @@ function albumReducer(albums, action) {
     }
 }
 
-export default function AlbumList() {
+export default function AlbumList({query}) {
     //album title to set in the db and to refresh it in input field when form is submitted
     const [album, setAlbum] = useState({ title: '' });
     const [image, setImage] = useState({ title: '', url: ''});
@@ -37,7 +37,8 @@ export default function AlbumList() {
         //adding doc in db 
         await addDoc(collection(db, 'albums'), {
             title: album.title,
-            images: []
+            images: [],
+            timestamp: new Date().getTime()
         })
         setAlbum({ title: '' });
     }
@@ -81,7 +82,9 @@ export default function AlbumList() {
     // useEffect to get realtime update from DB and to store it in albums, to show updates on screen in realtime
     useEffect(() => {
         onSnapshot(collection(db, "albums"), (snapShot) => {
-            const albumsArray = snapShot.docs.map((doc) => {
+            let array = snapShot.docs.sort((x, y) => x._document.createTime.timestamp - y._document.createTime.timestamp);
+            console.log(array);
+            const albumsArray = array.map((doc) => {
                 return {
                     id: doc.id,
                     ...doc.data()
@@ -90,6 +93,11 @@ export default function AlbumList() {
             dispatch({ type: "ADD", albums: albumsArray });           
         })
     }, []);
+
+    useEffect(() => {
+        setAlbumSelect(false);
+        setAlbumForm(false);
+    }, [query]);
 
 
     return (
