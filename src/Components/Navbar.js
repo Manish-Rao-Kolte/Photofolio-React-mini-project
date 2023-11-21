@@ -6,9 +6,8 @@ export default function Navbar({setQuery}) {
     }
     return (
         <>
-            <div className="navbar">
-                <img className="navbar-img" src="https://cdn-icons-png.flaticon.com/128/4047/4047371.png" alt="PhotoFolio-Icon"
-                    onClick={(e) => handleClick(e)}></img>
+            <div className="navbar" onClick={(e) => handleClick(e)}>
+                <img className="navbar-img" src="https://cdn-icons-png.flaticon.com/128/4047/4047371.png" alt="PhotoFolio-Icon"></img>
                 <span> PhotoFolio </span>
             </div>
         </>
