@@ -1,17 +1,17 @@
 
 
 export default function ImageCard(props) {
-    const {imageClick, image, key, editImage, deleteImage} = props;
+    const {imageClick, image, i, editImage, deleteImage} = props;
     return (
         <>
             <div className="image-card">
                 <div className="image-card-btn">
                     <img className="img" src="https://cdn-icons-png.flaticon.com/128/10336/10336582.png" alt="edit-image" 
-                    onClick={() => editImage(key)}/>
+                    onClick={() => editImage(image ,i)}/>
                     <img className="img" src="https://cdn-icons-png.flaticon.com/128/6711/6711573.png" alt="delete-image" 
-                    onClick={() => deleteImage(key)}/>
+                    onClick={() => deleteImage(i)}/>
                 </div>
-                <div className="image-card-img" onClick={() => imageClick(key, image.url)}>
+                <div className="image-card-img" onClick={() => imageClick(i, image.url)}>
                     <img src={image.url} alt="Image"></img>
                 </div>
                 <div className="image-card-title">

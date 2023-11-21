@@ -9,7 +9,7 @@ export default function ImageForm(props) {
                 <h3 className="image-form-heading">Add image to {album.title}</h3>
                 <div className="image-form-input">
                     <input type="text"  placeholder="Title" value={image.title}
-                    onChange={(e) => setImage({title: e.target.value, url: ''})} required></input>
+                    onChange={(e) => setImage({title: e.target.value, url: image.url})} required></input>
                     <input type="url"  placeholder="Image Url" value={image.url}
                     onChange={(e) => setImage({title: image.title, url: e.target.value})} required></input>
                     <div className="image-form-btn">

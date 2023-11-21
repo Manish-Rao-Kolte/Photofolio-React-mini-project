@@ -19,16 +19,18 @@ function albumReducer(albums, action) {
     }
 }
 
-export default function AlbumList({query}) {
+export default function AlbumList({ query }) {
     //album title to set in the db and to refresh it in input field when form is submitted
     const [album, setAlbum] = useState({ title: '' });
-    const [image, setImage] = useState({ title: '', url: ''});
+    const [image, setImage] = useState({ title: '', url: '' });
     const [albumSelect, setAlbumSelect] = useState(false);
     const [bool, setBool] = useState(false);
     const [curAlbum, setCurAlbum] = useState(null);
     const [albumForm, setAlbumForm] = useState(false);
     const [imageForm, setImageForm] = useState(false);
     const [albums, dispatch] = useReducer(albumReducer, []);
+    const [imageUpdate, SetImageUpdate] = useState(false);
+    const [index, setIndex] = useState('');
 
 
     // function to handle album form submission
@@ -48,13 +50,27 @@ export default function AlbumList({query}) {
         e.preventDefault();
         const docRef = doc(db, "albums", curAlbum.id);
         const alb = await getDoc(docRef);
-        await updateDoc(docRef, {
-            images: [image, ...alb.data().images]
-        });
+        if(imageUpdate){
+            let imgArray = alb.data().images;
+            imgArray.map((img, i) => {
+                if(index === i){
+                    imgArray[i] = image;
+                }
+            });
+            await updateDoc(docRef, {
+                images: imgArray
+            });
+        }else{
+            await updateDoc(docRef, {
+                images: [image, ...alb.data().images]
+            });
+        } 
         const albm = await getDoc(docRef);
-        setCurAlbum({id: albm.id, data: albm.data()});
+        setCurAlbum({ id: albm.id, data: albm.data() });
         setImage({ title: '', url: '' });
         setBool(!bool);
+        setImageForm(false);
+        SetImageUpdate(false);
     }
 
     //below function is to change the albumSelected so we can render the images of an album when it is clicked.
@@ -83,20 +99,20 @@ export default function AlbumList({query}) {
     useEffect(() => {
         onSnapshot(collection(db, "albums"), (snapShot) => {
             let array = snapShot.docs.sort((x, y) => x._document.createTime.timestamp - y._document.createTime.timestamp);
-            console.log(array);
             const albumsArray = array.map((doc) => {
                 return {
                     id: doc.id,
                     ...doc.data()
                 }
             });
-            dispatch({ type: "ADD", albums: albumsArray });           
+            dispatch({ type: "ADD", albums: albumsArray });
         })
     }, []);
 
     useEffect(() => {
         setAlbumSelect(false);
         setAlbumForm(false);
+        setImageForm(false);
     }, [query]);
 
 
@@ -105,8 +121,9 @@ export default function AlbumList({query}) {
             {
                 albumSelect
                     ?
-                    <ImageList album={curAlbum.data} returnClick={returnClick} imageSubmit={imageSubmit}
-                        image={image} setImage={setImage} imageForm={imageForm} setImageForm={setImageForm} />
+                    <ImageList album={curAlbum.data} returnClick={returnClick} imageSubmit={imageSubmit} SetImageUpdate={SetImageUpdate}
+                        image={image} setImage={setImage} imageForm={imageForm} setImageForm={setImageForm} setIndex={setIndex}
+                        curAlbum={curAlbum}  />
                     :
                     <div>
                         {albumForm ? <AlbumForm albumSubmit={albumSubmit} album={album} setAlbum={setAlbum} /> : null}
